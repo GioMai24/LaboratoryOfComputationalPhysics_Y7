@@ -1,0 +1,18 @@
+Saccomani,Alessio,alessio.saccomani@studenti.unipd.it,PoD
+Sahputra,Nadillia,nadillia.sahputra@studenti.unipd.it,PoD
+Sapkas,Michail,michail.sapkas@studenti.unipd.it,PoD
+Saran Gattorno,Giancarlo,giancarlo.sarangattorno@studenti.unipd.it,PoD
+Sardo Infirri,Giosuè,giosue.sardoinfirri@studenti.unipd.it,PoD
+Saretto,Saretto,alberto.saretto.1@studenti.unipd.it,Physics
+Sarte,Emanuele,emanuele.sarte@studenti.unipd.it,PoD
+Tancredi ,Riccardo ,riccardo.tancredi@studenti.unipd.it,PoD
+Toso,Simone,simone.toso.2@studenti.unipd.it,PoD
+Vatankhahan,Mahdy,mahdy.vatankhahan@studenti.unipd.it,PoD
+Verguizas I Moliner,Joan,joan.verguizasimoliner@studenti.unipd.it,PoD
+Viterbo,Giuseppe,giuseppe.viterbo@studenti.unipd.it,PoD
+Waththe Liyanage,Wageesha Widuranga,wageeshawiduranga.waththeliyanage@studenti.unipd.it,PoD
+Wickramasinghe Mudiyanselage,Poornima Amali Wickramasinghe,poornimaamaliwickramasinghe.wickramasinghemudiyanselage@studenti.unipd.it,PoD
+Zago,Giovanni,giovanni.zago.2@studenti.unipd.it,PoD
+Zal,Abbas,abbas.zal@studenti.unipd.it,PoD
+Zane,Francesco,francesco.zane.1@studenti.unipd.it,PoD
+Zenari,Marco,marco.zenari@studenti.unipd.it,PoD

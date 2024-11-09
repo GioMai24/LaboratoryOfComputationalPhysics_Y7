@@ -26,9 +26,34 @@ then
 	echo | grep "Physics" "LCP_students.csv" > "Physics.txt"
 fi
 
+
+nummax=0
+res=("None")
 for i in {A..Z}
 do
+	temp=$(grep -c "^$i" "LCP_students.csv")
 	echo "$i"
-	grep "^$i" "PoD.txt" | wc -l  # or LCP_students.csv to count everyone
+	echo "$temp"
 	echo ""
+	for x in ${res[@]}
+	do
+		if [ $temp -eq $nummax ]
+		then
+			res+=("$i")
+		elif [ $temp -gt $nummax ]
+		then
+			nummax=$temp
+			res="$i"
+		fi
+	done
+done
+echo "The letter with most counts over all students is $res"
+
+
+n=1
+for i in $(seq 2 18 $(wc -l <  "LCP_students.csv"))
+do
+	touch "group_$n.txt"
+	echo | sed -n "$i,$((($i+17)))p" "LCP_students.csv" > "group_$n.txt"
+	((n++))
 done
