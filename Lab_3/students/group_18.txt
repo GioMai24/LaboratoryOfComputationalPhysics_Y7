@@ -1,0 +1,4 @@
+Chueva,Ekaterina ,ekaterina.chueva@studenti.unipd.it,PoD
+Kumar,Prince,prince.kumar@studenti.unipd.it,PoD
+Ruffini,Federico,federico.ruffini.1@studenti.unipd.it,Physics
+Zenari,Marco,marco.zenari@studenti.unipd.it,PoD

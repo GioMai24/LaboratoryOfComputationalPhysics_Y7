@@ -1,18 +1,22 @@
 #!/bin/bash
 
-if [ ! -d "students" ]  # it will create a directory in the current directory, not in Home
+
+# Create students directory if it doesn't exist
+if [ ! -d "students" ]
 then
 	mkdir students
 fi
 
 
-if [ ! -f "LCP_students.csv" ]  # checks if the file exists in the current directory, starts the download and copies it in the students directory, doesn't check if students directory contains the file
+# Download file if it doesn't exist
+if [ ! -f "LCP_students.csv" ]
 then
 	wget -O "LCP_students.csv" "https://www.dropbox.com/scl/fi/bxv17nrbrl83vw6qrkiu9/LCP_22-23_students.csv?rlkey=47fakvatrtif3q3qw4q97p5b7&e=1"
 	cp "LCP_students.csv" "students/LCP_students.csv"
 else
 	echo "The file already exists: it won't be downloaded nor copied in the students directory"
 fi
+
 
 
 cd "students"
@@ -51,9 +55,9 @@ echo "The letter with most counts over all students is $res"
 
 
 n=1
-for i in $(seq 2 18 $(wc -l <  "LCP_students.csv"))
+for i in $(seq 2 19)  # Since it's modulo 18 u skip 18 names, hence you must span through the skipped ones to include everyone
 do
 	touch "group_$n.txt"
-	echo | sed -n "$i,$((($i+17)))p" "LCP_students.csv" > "group_$n.txt"
+	echo | sed -n "$i~18p" "LCP_students.csv" > "group_$n.txt"
 	((n++))
 done
