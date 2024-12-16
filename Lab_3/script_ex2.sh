@@ -22,7 +22,8 @@ done
 echo "Numbers lesser than $thr: ${#les[@]}"
 echo "Numbers greater than $thr: ${#gre[@]}"
 
-# Copy n times
+
+# Copy n times dividing by n each iteration
 for i in $(seq 1 $1); do
-	cp data.txt data_$i.txt
+	echo "$(grep -oE "[1-9]+")/$i" | bc -l > data_$i.txt
 done
