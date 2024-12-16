@@ -21,8 +21,3 @@ for i in $(grep -oE "[1-9]+" < data.txt); do
 done
 echo "Numbers lesser than $thr: ${#les[@]}"
 echo "Numbers greater than $thr: ${#gre[@]}"
-
-# Copy n times
-for i in $(seq 1 $1); do
-	cp data.txt data_$i.txt
-done
