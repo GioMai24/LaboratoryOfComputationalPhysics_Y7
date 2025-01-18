@@ -1,31 +1,23 @@
 #!/bin/bash
 
+if [[ -z $1 ]]; then echo "./ex2.sh: make sure to pass an input, it must be an integer value."; exit 1; fi
+
 # Removing metadata and commas
-#grep -v "^#" "data.csv" | sed -e "s/,/ /g" > "data.txt"
+grep -v "^#" "data.csv" | tr -d ',' > "data.txt"
 
 
-# Counting even numbers in file
 echo 'Even numbers:' $(grep -oP '[02468]\b' data.txt | wc -w)
 
 
 # Distinguishing entries
-les=0
-gre=0
-thr=$(echo "scale=3;100*sqrt(3)/2" | bc)
-for i in $(grep -oE "[0-9]+" data.txt); do  # grep method, I don't know if more efficient than cat
-	if [[ $(echo "scale=5;$i < $thr" | bc) == 0 ]]; then ((les++))
+les=0; gre=0
+thr=$(echo "100*sqrt(3)/2" | bc -l)
+while read x y z _ _ _; do
+	num=$(echo "sqrt($x^2 + $y^2 + $z^2)" | bc -l)
+	if [[ $(echo "$num < $thr" | bc -l) == 0 ]]; then ((les++))
 	else ((gre++)); fi
-done
-echo "Numbers lesser than $thr: $les"
-echo "Numbers greater than $thr: $gre"
+done < data.txt
 
-
-les=0
-gre=0
-for i in $(cat data.txt); do  # cat method, cleaner to code
-	if [[ $(echo "scale=5;$i < $thr" | bc) == 0 ]]; then ((les++))
-	else ((gre++)); fi
-done
 echo "Numbers lesser than $thr: $les"
 echo "Numbers greater than $thr: $gre"
 

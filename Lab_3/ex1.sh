@@ -1,47 +1,41 @@
 #!/bin/bash
 
+# Make directory at $HOME
+#mkdir ~/students
 
-# Create students directory if it doesn't exist
-if [[ ! -d students ]]; then mkdir students; fi
 
-
-# Download file if it doesn't exist
+# Download file if it doesn't exist (I used another directory for the exercise)
 if [[ ! -f students/LCP_students.csv ]]; then
-	wget -O "LCP_students.csv" "https://www.dropbox.com/scl/fi/bxv17nrbrl83vw6qrkiu9/LCP_22-23_students.csv?rlkey=47fakvatrtif3q3qw4q97p5b7&e=1"
+	wget -O 'LCP_students.csv' 'https://www.dropbox.com/s/867rtx3az6e9gm8/LCP_22-23_students.csv'
 	cp "LCP_students.csv" "students/LCP_students.csv"
 else echo "The file already exists: it won't be downloaded nor copied in the students directory"; fi
 
 
-
+# I assume we want to work in the students directory
 cd "students"
 
 
-if [ ! -f "PoD.txt" ]; then touch "PoD.txt"; touch "Physics.txt"
-	grep "PoD" "LCP_students.csv" > "PoD.txt"
-	grep "Physics" "LCP_students.csv" > "Physics.txt"
-fi
+# Separate students of PoD from Physics
+grep "PoD" "LCP_students.csv" > "PoD.csv"
+grep "Physics" "LCP_students.csv" > "Physics.csv"
 
 
-nummax=0; res=("None")
+echo 'Letter count:'
+nummax=0; res=''
 for i in {A..Z}; do
-	temp=$(grep -c "^$i" "LCP_students.csv")
-	echo "$i"; echo "$temp"; echo ""
-	for x in ${res[@]}; do
-		if [ $temp -eq $nummax ]; then res+=("$i")
-		elif [ $temp -gt $nummax ]
-		then
-			nummax=$temp
-			res="$i"
-		fi
-	done
+	# tail ensures we skip the header which would count an additional F
+	count=$(tail -n +2 LCP_students.csv | grep -c "^$i")
+	echo "$i: $count"
+	if (( $count == $nummax )); then res+=" $i"
+	elif (( $count > $nummax )); then
+		nummax=$count
+		res="$i"
+	fi
 done
-echo "The letter with most counts over all students is $res"
+echo "The letter\s with most counts over all students is\are: $res"
 
 
-n=1
-for i in $(seq 2 19)  # Since it's modulo 18 u skip 18 names, hence you must span through the skipped ones to include everyone
-do
-	touch "group_$n.txt"
-	sed -n "$i~18p" "LCP_students.csv" > "group_$n.txt"
-	((n++))
+# Create groups modulo 18 (seq starts at 2 to avoid headerline)
+for i in $(seq 2 19); do 
+	sed -n "$i~18p" "LCP_students.csv" > "group_$(($i-1)).csv"
 done
